@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crypto Total - Secure Cryptocurrency Management & Trading Platform">
+    <meta name="keywords" content="cryptocurrency, crypto wallet, bitcoin, ethereum, trading, secure wallet">
+    <link rel="canonical" href="https://cryptototal.net/">
+    <meta property="og:url" content="https://cryptototal.net/">
+    <meta property="og:site_name" content="Crypto Total">
+    <title>Crypto Total - Secure Cryptocurrency Management & Trading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 140, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff8c00;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #ff8c00;
+        }
+
+        .login-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 50px 100px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
+            word-wrap: break-word;
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%);
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 18px 40px;
+            background: rgba(26, 31, 58, 0.8);
+            border: 2px solid rgba(255, 140, 0, 0.3);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: #ff8c00;
+            background: rgba(255, 140, 0, 0.1);
+        }
+
+        /* Navigation buttons - same size */
+        #nav-auth-buttons .btn-secondary {
+            padding: 12px 30px;
+            font-size: 15px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .bitcoin-display {
+            font-size: 100px;
+            margin: 20px 0 30px;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .bitcoin-display:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 50px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #ff8c00;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+            font-size: 16px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 50px;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #ffffff 0%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(26, 31, 58, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 140, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 140, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 140, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff8c00;
+        }
+
+        .feature-card p {
+            color: #a0a0a0;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 50px;
+            background: rgba(10, 14, 39, 0.3);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: rgba(26, 31, 58, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 140, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 140, 0, 0.3);
+        }
+
+        .testimonial-rating {
+            color: #ffa500;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            color: #e0e0e0;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 50px;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: rgba(26, 31, 58, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 140, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #ff8c00;
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 140, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 140, 0, 0.3);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%);
+            color: #ffffff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-title {
+            font-size: 24px;
+            color: #ff8c00;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .pricing-period {
+            color: #a0a0a0;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 50px;
+            background: rgba(10, 14, 39, 0.3);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(26, 31, 58, 0.8);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 140, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item.active {
+            border-color: rgba(255, 140, 0, 0.3);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #ff8c00;
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            color: #ff8c00;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 25px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 25px 25px;
+        }
+
+        .faq-answer p {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 80px 50px;
+            background: rgba(26, 31, 58, 0.8);
+            text-align: center;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .newsletter p {
+            color: #a0a0a0;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            background: rgba(10, 14, 39, 0.6);
+            border: 2px solid rgba(255, 140, 0, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #ff8c00;
+            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+        }
+
+        .newsletter-input::placeholder {
+            color: #666;
+        }
+
+        .newsletter-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff8c00 0%, #ffa500 100%);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 50px 30px;
+            background: rgba(10, 14, 39, 0.8);
+            border-top: 1px solid rgba(255, 140, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: #ff8c00;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #a0a0a0;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff8c00;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 140, 0, 0.1);
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero {
+                padding: 80px 30px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+
+            .logo-nav {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            #nav-auth-buttons {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            #nav-auth-buttons .btn-secondary,
+            #nav-auth-buttons .login-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 60px 20px 80px;
+                min-height: calc(100vh - 60px);
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+
+            .bitcoin-display {
+                font-size: 80px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 12px 15px;
+            }
+
+            .logo-nav {
+                font-size: 18px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .bitcoin-display {
+                font-size: 60px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .feature-card, .pricing-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo-nav" onclick="window.location.href='#top'">
+            <span style="font-size: 32px;">₿</span>
+            <span>Crypto Total</span>
+        </div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#testimonials">Reviews</a>
+            <a href="#faq">FAQ</a>
+            <div style="display: flex; gap: 15px; align-items: center;" id="nav-auth-buttons">
+                <a href="login.html" class="btn-secondary" id="nav-signup-btn" onclick="sessionStorage.setItem('openRegister', 'true');">Sign Up</a>
+                <a href="login.html" class="login-btn" id="nav-login-btn">Sign In</a>
+            </div>
+            <a href="dashboard.html" class="login-btn" id="nav-dashboard-btn" style="display: none;">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <div class="bitcoin-display" onclick="animateBitcoin()">₿</div>
+        <h1>The World's Most Secure Crypto Wallet</h1>
+        <p>
+            Manage your cryptocurrencies safely and easily. With Cold Storage, 
+            Multi-Signature, and Enterprise-Grade security for your digital assets.
+        </p>
+        <div class="cta-buttons">
+            <a href="login.html" class="btn-primary">Get Started Free</a>
+            <a href="#features" class="btn-secondary">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">2M+</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">$50B+</div>
+                <div class="stat-label">Assets Under Management</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Countries</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title fade-in">Why Crypto Total?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Cold Storage</h3>
+                    <p>
+                        Over 95% of your cryptocurrencies are stored in Cold Storage, 
+                        completely offline and secure from hackers.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Multi-Signature</h3>
+                    <p>
+                        Enhanced security through Multi-Signature technology. 
+                        Your transactions require multiple confirmations.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Transactions</h3>
+                    <p>
+                        Send and receive cryptocurrencies in seconds. 
+                        Low fees and instant confirmations.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile App</h3>
+                    <p>
+                        Manage your cryptocurrencies from anywhere with our 
+                        secure mobile app for iOS and Android.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💼</div>
+                    <h3>Institutional Grade</h3>
+                    <p>
+                        Enterprise-level security and compliance. 
+                        Trust the same technology used by major institutions.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Availability</h3>
+                    <p>
+                        Available in over 150 countries. 
+                        Support for 50+ languages and local currencies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title fade-in">Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card fade-in">
+                    <div class="pricing-title">Starter</div>
+                    <div class="pricing-price">Free</div>
+                    <div class="pricing-period">Forever</div>
+                    <ul class="pricing-features">
+                        <li>Basic Wallet</li>
+                        <li>Multiple Cryptocurrencies</li>
+                        <li>Email Support</li>
+                        <li>Mobile App Access</li>
+                    </ul>
+                    <a href="login.html" class="btn-secondary" style="width: 100%; text-align: center; display: block;">Get Started</a>
+                </div>
+                <div class="pricing-card featured fade-in">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-title">Professional</div>
+                    <div class="pricing-price">$9.99</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited Storage</li>
+                        <li>Priority Support</li>
+                        <li>Advanced Security</li>
+                        <li>Multi-Signature</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                    <a href="login.html" class="btn-primary" style="width: 100%; text-align: center; display: block;">Get Started</a>
+                </div>
+                <div class="pricing-card fade-in">
+                    <div class="pricing-title">Enterprise</div>
+                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-period">Contact Us</div>
+                    <ul class="pricing-features">
+                        <li>Everything in Pro</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>Custom Integrations</li>
+                        <li>SLA Guarantee</li>
+                        <li>White-Label Options</li>
+                    </ul>
+                    <a href="mailto:sales@cryptototal.net" class="btn-secondary" style="width: 100%; text-align: center; display: block;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title fade-in">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">
+                        "The most secure wallet I've ever used. The cold storage feature gives me complete peace of mind."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>John Doe</h4>
+                            <p>Crypto Investor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Incredible user experience. Managing my crypto has never been easier. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Miller</h4>
+                            <p>Crypto Trader</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Enterprise-grade security with a user-friendly interface. Perfect for both beginners and experts."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Michael Roberts</h4>
+                            <p>Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How secure is Crypto Total?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Crypto Total uses industry-leading security measures including cold storage for 95% of funds, multi-signature technology, and 256-bit SSL encryption. Your assets are protected by the same security standards used by major financial institutions.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What fees do you charge?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer transparent pricing with no hidden fees. Basic wallet is free forever. Professional plan is $9.99/month with unlimited transactions. Enterprise plans are customized based on your needs.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I use Crypto Total on mobile?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Crypto Total is available on both iOS and Android. Download our mobile app from the App Store or Google Play Store to manage your cryptocurrencies on the go.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How do I recover my wallet if I lose access?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>During account setup, you'll receive a recovery seed phrase. Keep this secure and offline. You can use it to recover your wallet on any device. We also offer account recovery options through our support team.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is my personal information safe?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We use end-to-end encryption and never share your personal information with third parties. Your privacy and security are our top priorities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2>Stay Updated</h2>
+            <p>Get the latest news, updates, and tips about cryptocurrency</p>
+            <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Crypto Total</h4>
+                <p style="color: #a0a0a0; line-height: 1.6;">
+                    The world's most secure and trusted cryptocurrency wallet platform 
+                    for individuals and institutions worldwide.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="#features" onclick="scrollToSection('#features')">Features</a>
+                <a href="#pricing" onclick="scrollToSection('#pricing')">Pricing</a>
+                <a href="#testimonials" onclick="scrollToSection('#testimonials')">Reviews</a>
+                <a href="#faq" onclick="scrollToSection('#faq')">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#top" onclick="scrollToSection('#top')">About Us</a>
+                <a href="login.html">Sign In</a>
+                <a href="login.html">Get Started</a>
+                <a href="#pricing" onclick="scrollToSection('#pricing')">Pricing</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#faq" onclick="scrollToSection('#faq')">Help Center</a>
+                <a href="mailto:support@cryptototal.net">Contact</a>
+                <a href="#top" onclick="scrollToSection('#top')">Home</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Crypto Total. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in
+        window.addEventListener('DOMContentLoaded', function() {
+            const currentUser = sessionStorage.getItem('currentUser');
+            if (currentUser) {
+                document.getElementById('nav-auth-buttons').style.display = 'none';
+                document.getElementById('nav-dashboard-btn').style.display = 'inline-block';
+            }
+
+            // Initialize animations
+            initScrollAnimations();
+            initNavbarScroll();
+        });
+
+        // Navbar scroll effect
+        function initNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+
+        // Bitcoin animation
+        function animateBitcoin() {
+            const bitcoin = document.querySelector('.bitcoin-display');
+            bitcoin.style.animation = 'none';
+            setTimeout(() => {
+                bitcoin.style.animation = 'float 3s ease-in-out infinite';
+            }, 10);
+        }
+
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const faqItem = element.closest('.faq-item');
+            const isActive = faqItem.classList.contains('active');
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Smooth scroll to section
+        function scrollToSection(selector) {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Newsletter
+        function handleNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input').value;
+            alert('Thank you for subscribing! You will receive updates at ' + email);
+            event.target.reset();
+        }
+
+        // Make all footer links work
+        document.querySelectorAll('footer a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                scrollToSection(targetId);
+            });
+        });
+    </script>
+</body>
+</html>
